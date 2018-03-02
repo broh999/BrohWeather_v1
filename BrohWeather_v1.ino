@@ -37,6 +37,7 @@ void setup()   {
 
 void loop(){
           RTC.readTime();
+
           pressuremBar = (bmp.readPressure()); //Reading pressure from BMP in PA
           pressuremBar = pressuremBar / 100;   //Calculate pressure in mBar
             // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -55,8 +56,9 @@ void loop(){
             }*/
 
           
-            // Send data to serial. Format is: hH.mM.sS,ExtTemp,IntTemp,ExtHum,Pressure
-            Serial.print(String(RTC.h) + ":" + String(RTC.m) + ":" + String(RTC.s) + "," + String(temp) + "," + bmp.readTemperature());
+            // Send data to serial. Format is: HH:MM:SS,ExtTemp,IntTemp,ExtHum,Pressure
+            rtctime(); 
+            Serial.print("," + String(temp) + "," + bmp.readTemperature());
             Serial.print("," + String(hum) + ",");Serial.println(String(pressuremBar));
 
          
@@ -64,5 +66,15 @@ void loop(){
           
 }
 
-
+void rtctime(){
+  //Prepare time format in hh:mm:ss
+  if (RTC.h < 10) Serial.print("0");
+  Serial.print(RTC.h);
+  Serial.print(":");
+  if (RTC.m < 10) Serial.print("0");
+  Serial.print(RTC.m);
+  Serial.print(":");
+  if (RTC.s < 10) Serial.print("0");
+  Serial.print(RTC.s);
+}
 
