@@ -1,2 +1,2 @@
 # BrohWeather_v1
-![GitHub Logo](/images/logo.png)
+![logo](2000px-Arduino_Logo.svg[1].png)
