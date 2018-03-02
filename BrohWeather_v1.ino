@@ -43,22 +43,24 @@ void loop(){
             float hum = dht.readHumidity();
             // Read temperature as Celsius (the default)
             float temp = dht.readTemperature();
-            if (temp < tempmin){
+            
+            
+            
+            /*if (temp < tempmin){
               tempmin=temp;
-
               Serial.print("Nuova tmin ");
               Serial.print(RTC.h);
               Serial.print(":");
               Serial.println(RTC.m);
-            }
+            }*/
 
           
-
-            Serial.print(String(RTC.h) + ":" + String(RTC.m) + ":" + String(RTC.s) + " | T: " + String(temp) + " | iT: " + bmp.readTemperature());
-            Serial.print(" | H: " + String(hum) + " Pressione: ");Serial.println(pressuremBar + " mBar");
+            // Send data to serial. Format is: hH.mM.sS,ExtTemp,IntTemp,ExtHum,Pressure
+            Serial.print(String(RTC.h) + ":" + String(RTC.m) + ":" + String(RTC.s) + "," + String(temp) + "," + bmp.readTemperature());
+            Serial.print("," + String(hum) + ",");Serial.println(String(pressuremBar));
 
          
-          delay(500);
+          delay(5000);
           
 }
 
