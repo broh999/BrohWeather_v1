@@ -37,8 +37,8 @@ void setup()   {
 
 void loop(){
           RTC.readTime();
-          pressuremBar = (bmp.readPressure());
-          pressuremBar = pressuremBar / 100;
+          pressuremBar = (bmp.readPressure()); //Reading pressure from BMP in PA
+          pressuremBar = pressuremBar / 100;   //Calculate pressure in mBar
             // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
             float hum = dht.readHumidity();
             // Read temperature as Celsius (the default)
@@ -55,7 +55,7 @@ void loop(){
           
 
             Serial.print(String(RTC.h) + ":" + String(RTC.m) + ":" + String(RTC.s) + " | T: " + String(temp) + " | iT: " + bmp.readTemperature());
-            Serial.print(" | H: " + String(hum) + " Pressione: ");Serial.println(pressuremBar);
+            Serial.print(" | H: " + String(hum) + " Pressione: ");Serial.println(pressuremBar + " mBar");
 
          
           delay(500);
